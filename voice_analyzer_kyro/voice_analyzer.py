@@ -53,7 +53,7 @@ if st.sidebar.button("Transcribe Audio"):
         df = pd.DataFrame(list(user_freq.items()), columns=['Word', 'User Frequency'])
         df['Global Frequency'] = df['Word'].apply(lambda x: global_freq.get(x, 0))
         
-        st.header("Comparison Table")
+        st.header("Comparison Table:")
         st.table(df)
     
     
@@ -79,7 +79,7 @@ if st.sidebar.button("Transcribe Audio"):
         
         # Extract and display top 3 unique phrases
         top_phrases = extract_top_unique_phrases(transcription["text"])
-        st.header("Top 3 Unique Phrases")
+        st.header("Top 3 Unique Phrases:")
         st.write(top_phrases)
     else:
         st.sidebar.error("Please upload an audio file.")
