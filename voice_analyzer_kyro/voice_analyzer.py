@@ -6,6 +6,8 @@ from collections import Counter
 import re
 import pandas as pd
 
+os.environ["PATH"] += os.pathsep + '/path/to/ffmpeg/bin'
+
 st.title("Whisper for multilingual transcriptions!")
 
 # upload audio file with streamlit
