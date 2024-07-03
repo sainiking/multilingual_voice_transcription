@@ -6,7 +6,6 @@ from collections import Counter
 import re
 import pandas as pd
 
-
 st.title("Whisper for multilingual transcriptions!")
 
 # upload audio file with streamlit
@@ -68,13 +67,22 @@ if st.sidebar.button("Transcribe Audio"):
         transcription = model.transcribe(tmp_path, task="translate")
         save_transcription(transcription["text"])
         st.sidebar.success("Transcription Complete")
+
         # Display the transcription
         st.markdown(transcription["text"])
-        # Call to display the comparison table
-        display_comparison_table(transcription["text"])
+
+        # Button to display the comparison table
+        if st.button("Show Comparison Table"):
+            display_comparison_table(transcription["text"])
+            
         # Extract and display top 3 unique phrases
         top_phrases = extract_top_unique_phrases(transcription["text"])
-        st.write("Top 3 Unique Phrases:", top_phrases)
+        if top_phrases:
+            st.write("Explore Top 3 Unique Phrases:")
+            # Create a button for each phrase
+            for i, phrase in enumerate(top_phrases, start=1):
+                if st.button(f"Show Phrase {i}"):
+                    st.write(phrase)
     else:
         st.sidebar.error("Please upload an audio file.")
 
@@ -89,9 +97,3 @@ st.sidebar.audio(audio_file)
 st.sidebar.header("Transcription History")
 for transcription in get_transcription_history():
     st.sidebar.text(f"{transcription.created_at}: {transcription.text}")
-
-
-
-
-
-
