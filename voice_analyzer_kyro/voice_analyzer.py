@@ -6,7 +6,7 @@ from collections import Counter
 import re
 import pandas as pd
 
-st.title("Multilingual Voice Transcriptions!")
+st.title("Multilingual Voice Transcripter!")
 
 st.text("Whisper Model Loaded, Select an audio file to transcribe.")
 # upload audio file with streamlit
