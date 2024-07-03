@@ -17,7 +17,7 @@ model = whisper.load_model("base")
 
 
 if st.sidebar.button("Transcribe Audio"):
-    # Add the calculate_word_frequency function here
+    # calculate_word_frequency function here.
     def calculate_word_frequency(text):
         words = re.findall(r'\w+', text.lower())
         return Counter(words)
@@ -38,18 +38,18 @@ if st.sidebar.button("Transcribe Audio"):
         return unique_phrases_sorted[:top_n]
 
 
-    # Add the calculate_global_word_frequency function here (if not using a separate database file)
+    #calculate_global_word_frequency function here.
     def calculate_global_word_frequency():
-        transcriptions = get_transcription_history()  # Assuming this returns all transcriptions
+        transcriptions = get_transcription_history()
         all_text = " ".join([transcription.text for transcription in transcriptions])
         return calculate_word_frequency(all_text)
     
-    # Add the display_comparison_table function here
+    # display_comparison_table function here.
     def display_comparison_table(user_text):
         user_freq = calculate_word_frequency(user_text)
         global_freq = calculate_global_word_frequency()
         
-        # Create a DataFrame for comparison
+        # Create a DataFrame for comparison.
         df = pd.DataFrame(list(user_freq.items()), columns=['Word', 'User Frequency'])
         df['Global Frequency'] = df['Word'].apply(lambda x: global_freq.get(x, 0))
         
@@ -73,11 +73,14 @@ if st.sidebar.button("Transcribe Audio"):
         # Display the transcription
         st.header("Transcription Result:")
         st.markdown(transcription["text"])
+        
         # Call to display the comparison table
         display_comparison_table(transcription["text"])
+        
         # Extract and display top 3 unique phrases
         top_phrases = extract_top_unique_phrases(transcription["text"])
-        st.header("Top 3 Unique Phrases:", top_phrases)
+        st.header("Top 3 Unique Phrases")
+        st.write(top_phrases)
     else:
         st.sidebar.error("Please upload an audio file.")
 
