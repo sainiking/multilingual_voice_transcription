@@ -5,9 +5,7 @@ from database import save_transcription, get_transcription_history
 from collections import Counter
 import re
 import pandas as pd
-import os
 
-os.environ["PATH"] += os.pathsep + '/path/to/ffmpeg/bin'
 
 st.title("Whisper for multilingual transcriptions!")
 
