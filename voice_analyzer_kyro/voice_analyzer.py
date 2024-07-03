@@ -6,13 +6,14 @@ from collections import Counter
 import re
 import pandas as pd
 
-st.title("Whisper for multilingual transcriptions!")
+st.title("Multilingual Voice Transcriptions!")
 
+st.text("Whisper Model Loaded, Select an audio file to transcribe.")
 # upload audio file with streamlit
 audio_file = st.file_uploader("Upload Audio", type=["wav", "mp3", "m4a", "ogg"])
 
 model = whisper.load_model("base")
-st.text("Whisper Model Loaded")
+
 
 
 if st.sidebar.button("Transcribe Audio"):
@@ -52,6 +53,7 @@ if st.sidebar.button("Transcribe Audio"):
         df = pd.DataFrame(list(user_freq.items()), columns=['Word', 'User Frequency'])
         df['Global Frequency'] = df['Word'].apply(lambda x: global_freq.get(x, 0))
         
+        st.header("Comparison Table")
         st.table(df)
     
     
@@ -67,28 +69,21 @@ if st.sidebar.button("Transcribe Audio"):
         transcription = model.transcribe(tmp_path, task="translate")
         save_transcription(transcription["text"])
         st.sidebar.success("Transcription Complete")
-
+        
         # Display the transcription
+        st.header("Transcription Result:")
         st.markdown(transcription["text"])
-
-        # Button to display the comparison table
-        if st.button("Show Comparison Table"):
-            display_comparison_table(transcription["text"])
-            
+        # Call to display the comparison table
+        display_comparison_table(transcription["text"])
         # Extract and display top 3 unique phrases
         top_phrases = extract_top_unique_phrases(transcription["text"])
-        if top_phrases:
-            st.write("Explore Top 3 Unique Phrases:")
-            # Create a button for each phrase
-            for i, phrase in enumerate(top_phrases, start=1):
-                if st.button(f"Show Phrase {i}"):
-                    st.write(phrase)
+        st.header("Top 3 Unique Phrases:", top_phrases)
     else:
         st.sidebar.error("Please upload an audio file.")
 
 else:
-    st.info("Press the 'Transcribe Audio', button to start transcribing.")
-
+    st.info("After uploading the file, hit the 'Transcribe Audio' to the left.")
+    st.info("The transcription will be displayed below.")
 
 st.sidebar.header("Play original audio file.")
 st.sidebar.audio(audio_file)
