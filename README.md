@@ -14,13 +14,7 @@ refer requirements.txt file
 
 ### Prerequisites
 
-1. **Install Python**: Make sure Python is installed on your system. You can download it from [python.org](https://www.python.org/).
-
-2. **Install Chocolatey**: Chocolatey is a package manager for Windows. Follow the instructions on [chocolatey.org](https://chocolatey.org/install) to install it. > (choco install ffmpeg (Windows, if you don't have ffmpeg installed, you need to install it, otherwise you will get )
-
-
-
-## Setup Instructions
+**Install Python**: Make sure Python is installed on your system. You can download it from [python.org](https://www.python.org/).
 
 ### Prerequisites
 
@@ -53,12 +47,6 @@ refer requirements.txt file
 
     ```bash
     pip install -r requirements.txt
-    ```
-
-4. **Install FFmpeg**:
-
-    ```bash
-    choco install ffmpeg
     ```
 
 Usage:
