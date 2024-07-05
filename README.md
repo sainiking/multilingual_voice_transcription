@@ -20,9 +20,6 @@ refer requirements.txt file
 
 1. **Install Python**: Make sure Python is installed on your system. You can download it from [python.org](https://www.python.org/).
 
-2. **Install Chocolatey**: Chocolatey is a package manager for Windows. Follow the instructions on [chocolatey.org](https://chocolatey.org/install) to install it.
-
-### Install Dependencies
 
 1. **Clone the Repository**:
 
@@ -83,16 +80,7 @@ Helper Functions
 3. calculate_global_word_frequency(): Calculates the global word frequency from all transcriptions in the database.
 4. display_comparison_table(user_text): Displays a comparison table of word frequencies between the current user's text and global text.
 
-Contributing
-1. Fork the repository.
-2. Create a new branch (git checkout -b feature-branch).
-3. Make your changes.
-4. Commit your changes (git commit -m 'Add some feature').
-5. Push to the branch (git push origin feature-branch).
-6. Create a new Pull Request.
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
 
 Acknowledgements
 * Streamlit
